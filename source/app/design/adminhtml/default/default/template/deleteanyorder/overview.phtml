@@ -1,0 +1,45 @@
+<?php
+/**
+ * Yireo Deleteanyorder for Magento 
+ *
+ * @package     Yireo_DeleteAnyOrder
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2013 Yireo (http://www.yireo.com/)
+ * @license     Open Source License
+ */
+?>
+
+<div class="content-header">
+<table cellspacing="0">
+	<tr>
+		<td style="width:80%;"><h3 class="icon-head head-tag"><?php echo $this->getHeader('Overview'); ?></h3></td>
+        <td class="formbuttons"></td>
+	</tr>
+</table>
+</div>
+
+<div class="entry-edit">
+    <?php echo $this->getGridHtml(); ?>
+</div>
+
+<div style="text-align:center;padding:20px;">
+    <div style="">
+        <img src="<?php echo $this->getSkinUrl('images/deleteanyorder/logo.png'); ?>" style="display:inline;padding-right:5px" />
+        <span style="font-size:120%; color:#575757; line-height:50px; font-weight:bold;">
+        DeleteAnyOrder <?php echo $this->getVersion(); ?> &nbsp; - &nbsp;
+        Copyright &copy; 2013 <a href="http://www.yireo.com/" target="_new">Yireo</a>
+        </span>
+    </div>
+</div>
+
+<script type="text/javascript">
+var deleteanyorderForm = new varienForm('deleteanyorder_edit_form');
+function doSubmit() {
+    deleteanyorderForm.submit();
+    return true;
+}
+function doAnalyze() {
+    document.location = '<?php echo $this->getAnalyzeUrl(); ?>';
+    return true;
+}
+</script>

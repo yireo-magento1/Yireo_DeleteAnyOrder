@@ -1,0 +1,90 @@
+<?php
+/**
+ * Yireo Deleteanyorder for Magento 
+ *
+ * @package     Yireo_DeleteAnyOrder
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2013 Yireo (http://www.yireo.com/)
+ * @license     Open Source License
+ */
+?>
+<?php
+$analysis = $this->getAnalysis();
+$increments = $this->getIncrementIds();
+$header = $this->__('Analysis of order-objects');
+?>
+<div class="content-header">
+<table cellspacing="0">
+	<tr>
+		<td style="width:40%;"><h3 class="icon-head head-tag"><?php echo $this->getHeader($header); ?></h3></td>
+        <td class="formbuttons" align="right">
+            <?php echo $this->getChildHtml('back_button'); ?>
+            <?php echo $this->getChildHtml('cleanup_button'); ?>
+        </td>
+	</tr>
+</table>
+</div>
+
+<form action="<?php echo $this->getCleanupUrl() ?>" method="post" id="deleteanyorder_analyze_form" enctype="multipart/form-data">
+<input type="hidden" name="cleanup" value="1" />
+<?php echo $this->getBlockHtml('formkey')?>
+</form>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-account"><?php echo $this->__('Order records'); ?></h4>
+    </div>
+    <div class="fieldset">
+        <table>
+            <tr>
+                <th width="300"><?php echo $this->__('Class'); ?></th>
+                <th><?php echo $this->__('Obsolete entries'); ?></th>
+            </tr>
+            <?php foreach($analysis as $name => $value) { ?>
+            <tr>
+                <td><?php echo $name; ?></td>
+                <td><?php 
+                    if(!empty($value) && is_array($value)) {
+                        echo '<strong>'.count($value).'</strong>'; 
+                    } elseif(!empty($value)) {
+                        echo '<strong>'.$value.'</strong>'; 
+                    } else {
+                        echo 0;
+                    }
+                ?></td>
+            </tr>
+            <?php } ?>
+        </table>
+    </div>
+</div>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-account"><?php echo $this->__('Increment IDs'); ?></h4>
+    </div>
+    <div class="fieldset">
+        <table>
+            <tr>
+                <th width="200"><?php echo $this->__('Type'); ?></th>
+                <th width="200"><?php echo $this->__('Current ID'); ?></th>
+                <th><?php echo $this->__('New increment ID'); ?></th>
+            </tr>
+            <?php foreach(array('Order' => 'order', 'Order Invoice' => 'invoice', 'Order Credit Memo' => 'creditmemo') as $label => $name) { ?>
+            <tr>
+                <td><?php echo $this->__($label); ?></td>
+                <td><?php echo (!empty($increments['current'][$name])) ? $increments['current'][$name] : 'Not Available'; ?></td>
+                <td><?php echo (!empty($increments['last'][$name])) ? $increments['last'][$name] : 'Not Available'; ?></td>
+            </tr>
+            <?php } ?>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+    var deleteanyorderForm = new varienForm('deleteanyorder_analyze_form');
+</script>
+
+<pre>
+Memory usage of this page: <?php echo round(memory_get_usage() / 1024 / 1024, 2); ?> Mb<br/>
+</pre>

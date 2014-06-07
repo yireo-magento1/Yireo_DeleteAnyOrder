@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Yireo DeleteAnyOrder for Magento 
+ *
+ * @package     Yireo_DeleteAnyOrder
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (C) 2014 Yireo (http://www.yireo.com/)
+ * @license     Open Source License (OSL v3)
+ */
+-->
+<config>
+
+    <modules>
+        <Yireo_DeleteAnyOrder>
+            <version>0.11.1</version>
+        </Yireo_DeleteAnyOrder>
+    </modules>
+
+    <global>
+        <blocks>
+            <deleteanyorder>
+                <class>Yireo_DeleteAnyOrder_Block</class>
+            </deleteanyorder>
+        </blocks>
+
+        <helpers>
+            <deleteanyorder>
+                <class>Yireo_DeleteAnyOrder_Helper</class>
+            </deleteanyorder>
+        </helpers>
+
+        <models>
+            <deleteanyorder>
+                <class>Yireo_DeleteAnyOrder_Model</class>
+            </deleteanyorder>
+        </models>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <deleteanyorder before="Mage_Adminhtml">Yireo_DeleteAnyOrder</deleteanyorder>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <default>
+        <deleteanyorder>
+            <settings>
+                <resetstock>0</resetstock>
+                <resetincrements>0</resetincrements>
+            </settings>
+        </deleteanyorder>
+    </default>
+</config>
