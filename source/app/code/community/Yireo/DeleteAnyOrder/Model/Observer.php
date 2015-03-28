@@ -26,4 +26,26 @@ class Yireo_DeleteAnyOrder_Model_Observer extends Mage_Core_Model_Abstract
         // Run the feed
         Mage::getModel('deleteanyorder/feed')->updateIfAllowed();
     }
+
+    /*
+     * Method fired on the event <core_block_abstract_prepare_layout_before>
+     *
+     * @access public
+     * @param Varien_Event_Observer $observer
+     * @return Yireo_DeleteAnyOrder_Model_Observer
+     */
+    public function coreBlockAbstractPrepareLayoutBefore($observer)
+    {
+        $block = $observer->getEvent()->getBlock();
+
+        $blockClass = 'Mage_Adminhtml_Block_Widget_Grid_Massaction';
+        if($block instanceof $blockClass
+            && $block->getRequest()->getControllerName() == 'sales_order')
+        {
+            $block->addItem('deleteanyorder', array(
+                'label' => 'Delete permanently',
+                'url' => Mage::helper('adminhtml')->getUrl('adminhtml/deleteanyorder/confirm'),
+            ));
+        }
+    }
 }

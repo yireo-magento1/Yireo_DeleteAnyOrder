@@ -13,7 +13,7 @@
 
     <modules>
         <Yireo_DeleteAnyOrder>
-            <version>0.11.1</version>
+            <version>0.12.1</version>
         </Yireo_DeleteAnyOrder>
     </modules>
 
@@ -36,6 +36,28 @@
             </deleteanyorder>
         </models>
     </global>
+
+    <adminhtml>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <deleteanyorder_controller_action_predispatch>
+                        <type>singleton</type>
+                        <class>Yireo_DeleteAnyOrder_Model_Observer</class>
+                        <method>controllerActionPredispatch</method>
+                    </deleteanyorder_controller_action_predispatch>
+                </observers>
+            </controller_action_predispatch>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <deleteanyorder_core_block_abstract_prepare_layout_before>
+                        <class>Yireo_DeleteAnyOrder_Model_Observer</class>
+                        <method>coreBlockAbstractPrepareLayoutBefore</method>
+                    </deleteanyorder_core_block_abstract_prepare_layout_before>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+        </events>
+    </adminhtml>
 
     <admin>
         <routers>
