@@ -8,17 +8,14 @@
  * @license     Open Source License (OSL v3)
  */
 
-/*
+/**
  * Class for block "deleteanyorder_analyze"
  */
 class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
 {
-    /*
+    /**
      * Constructor method
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function _construct()
     {
@@ -26,11 +23,9 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
         $this->setTemplate('deleteanyorder/analyze.phtml');
     }
 
-    /*
+    /**
      * Return the result of the analysis
      *
-     * @access public
-     * @param null
      * @return array
      */
     public function getAnalysis()
@@ -38,11 +33,9 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
         return Mage::getModel('deleteanyorder/database')->getAnalysis();
     }
 
-    /*
+    /**
      * Return a listing of increment-IDs
      *
-     * @access public
-     * @param null
      * @return array
      */
     public function getIncrementIds()
@@ -61,10 +54,9 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
         );
     }
 
-    /*
+    /**
      * Helper to return the header of this page
      *
-     * @access public
      * @param string $title
      * @return string
      */
@@ -76,8 +68,6 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
     /**
      * Return the cleanup URL
      *
-     * @access public
-     * @param null
      * @return string
      */
     public function getCleanupUrl()
@@ -91,8 +81,6 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
     /**
      * Return the back URL
      *
-     * @access public
-     * @param null
      * @return string
      */
     public function getBackUrl()
@@ -103,8 +91,6 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
     /**
      * Render block HTML
      *
-     * @access public
-     * @param null
      * @return string
      */
     protected function _toHtml()

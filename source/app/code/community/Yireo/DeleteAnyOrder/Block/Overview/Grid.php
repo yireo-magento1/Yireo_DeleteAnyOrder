@@ -10,12 +10,9 @@
 
 class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sales_Order_Grid
 {
-    /*
+    /**
      * Constructor method
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function __construct()
     {
@@ -24,11 +21,9 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
         $this->setUseAjax(false);
     }
 
-    /*
+    /**
      * Overriden method to add the right buttons to the layout
      *
-     * @access protected
-     * @param null
      * @return mixed
      */
     protected function _prepareLayout()
@@ -45,12 +40,9 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
         return parent::_prepareLayout();
     }
 
-    /*
+    /**
      * Overriden method to prepare the grid columns
      *
-     * @access protected
-     * @param null
-     * @return null
      */
     protected function _prepareColumns()
     {
@@ -81,12 +73,9 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
         $this->cleanRssLists();
     }
 
-    /*
+    /**
      * Overriden method to set the mass action select-box
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function _prepareMassaction()
     {
@@ -100,10 +89,9 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
         ));
     }
 
-    /*
+    /**
      * Method to return a delete-URL per item
      *
-     * @access public
      * @param object $row
      * @return string
      */
@@ -115,11 +103,9 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
         return false;
     }
 
-    /*
+    /**
      * Method to return the analyze button
      *
-     * @access public
-     * @param null
      * @return string
      */
     public function getAnalyzeButtonHtml()
@@ -127,12 +113,9 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
         return $this->getChildHtml('analyze_button');
     }
 
-    /*
+    /**
      * Method to return the button section
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function getMainButtonsHtml()
     {
@@ -141,12 +124,9 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
         return $html;
     }
 
-    /*
+    /**
      * Method to clean the internal RSS lists
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function cleanRssLists()
     {

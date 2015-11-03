@@ -10,12 +10,9 @@
 
 class Yireo_DeleteAnyOrder_Block_Overview extends Mage_Adminhtml_Block_Widget_Container
 {
-    /*
+    /**
      * Constructor method
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function _construct()
     {
@@ -23,12 +20,9 @@ class Yireo_DeleteAnyOrder_Block_Overview extends Mage_Adminhtml_Block_Widget_Co
         parent::_construct();
     }
 
-    /*
+    /**
      * Overriden method to add the grid to this layout
      *
-     * @access public
-     * @param null
-     * @return null
      */
     protected function _prepareLayout()
     {
@@ -39,22 +33,18 @@ class Yireo_DeleteAnyOrder_Block_Overview extends Mage_Adminhtml_Block_Widget_Co
         return parent::_prepareLayout();
     }
 
-    /*
+    /**
      * Helper method to get the grid output
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function getGridHtml()
     {
         return $this->getChildHtml('grid');
     }
 
-    /*
+    /**
      * Helper to return the header of this page
      *
-     * @access public
      * @param string $title
      * @return string
      */
@@ -66,8 +56,6 @@ class Yireo_DeleteAnyOrder_Block_Overview extends Mage_Adminhtml_Block_Widget_Co
     /**
      * Return the delete URL
      *
-     * @access public
-     * @param null
      * @return string
      */
     public function getAnalyzeUrl()
@@ -81,8 +69,6 @@ class Yireo_DeleteAnyOrder_Block_Overview extends Mage_Adminhtml_Block_Widget_Co
     /**
      * Return the delete URL
      *
-     * @access public
-     * @param null
      * @return string
      */
     public function getVersion()

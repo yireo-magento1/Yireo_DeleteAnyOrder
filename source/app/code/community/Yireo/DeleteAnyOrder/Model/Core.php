@@ -16,8 +16,6 @@ class Yireo_DeleteAnyOrder_Model_Core
     /**
      * Get a list of all the involved order-models
      *
-     * @access public
-     * @param null
      * @return array
      */
     public function getOrderModels()

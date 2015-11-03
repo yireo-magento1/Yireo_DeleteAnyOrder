@@ -16,7 +16,6 @@ class Yireo_DeleteAnyOrder_Model_Order
     /**
      * Delete an order entirely
      *
-     * @access public
      * @param int $orderId
      * @return bool
      */
@@ -193,10 +192,9 @@ class Yireo_DeleteAnyOrder_Model_Order
         return true;
     }
 
-    /*
+    /**
      * Delete an abstract collection by looping throw all its items
      *
-     * @access public
      * @param collection $collection
      * @return bool
      */
@@ -230,10 +228,9 @@ class Yireo_DeleteAnyOrder_Model_Order
         return false;
     }
 
-    /*
+    /**
      * Generic method to include a specific collection
      *
-     * @access public
      * @param Mage_Sales_Model_Order $order
      * @param string $name
      * @return array
@@ -250,10 +247,9 @@ class Yireo_DeleteAnyOrder_Model_Order
         };
     }
 
-    /*
+    /**
      * Optionally reset the available stock
      *
-     * @access public
      * @param Mage_Sales_Model_Order_Item $item
      * @return bool
      */
@@ -271,10 +267,9 @@ class Yireo_DeleteAnyOrder_Model_Order
         return true;
     }
 
-    /*
+    /**
      * Reset the increment-ID of orders
      *
-     * @access protected
      * @param int $storeId
      * @return bool
      */
@@ -300,10 +295,9 @@ class Yireo_DeleteAnyOrder_Model_Order
         return true;
     }
 
-    /*
+    /**
      * Reset the increment-ID of invoices
      *
-     * @access protected
      * @param int $storeId
      * @return bool
      */
@@ -334,10 +328,9 @@ class Yireo_DeleteAnyOrder_Model_Order
         return true;
     }
 
-    /*
+    /**
      * Reset the increment-ID of shipments
      *
-     * @access protected
      * @param int $storeId
      * @return bool
      */

@@ -23,8 +23,6 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
     /**
      * Common method
      *
-     * @access protected
-     * @param null
      * @return Yireo_DeleteAnyOrder_DeleteanyorderController
      */
     protected function _initAction()
@@ -41,9 +39,6 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
     /**
      * Overview page
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function indexAction()
     {
@@ -55,9 +50,6 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
     /**
      * Alias for overview
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function gridAction()
     {
@@ -67,9 +59,6 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
     /**
      * Confirmation page
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function confirmAction()
     {
@@ -81,9 +70,6 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
     /**
      * Delete action
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function deleteAction()
     {
@@ -92,7 +78,7 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
         $count = array('true' => 0, 'false' => 0);
 
         foreach($order_ids as $order_id) {
-            if(Mage::getModel('deleteanyorder/order')->delete($order_id) == true) {
+            if(Mage::getModel('deleteanyorder/order')->load($order_id)->delete() == true) {
                 $count['true']++;
             } else {
                 $count['false']++;
@@ -114,9 +100,6 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
     /**
      * Analyze page
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function analyzeAction()
     {
@@ -130,9 +113,6 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
     /**
      * Clean-up page
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function cleanupAction()
     {
@@ -141,5 +121,14 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
 
         // Redirect
         $this->_redirect('adminhtml/deleteanyorder/analyze');
+    }
+
+
+
+    protected function _isAllowed()
+    {
+        $aclResource = 'admin/system/tools/deleteanyorder';
+
+        return Mage::getSingleton('admin/session')->isAllowed($aclResource);
     }
 }

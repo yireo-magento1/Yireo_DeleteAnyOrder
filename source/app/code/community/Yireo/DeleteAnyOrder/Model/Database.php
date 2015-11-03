@@ -13,16 +13,14 @@
  */
 class Yireo_DeleteAnyOrder_Model_Database
 {
-    /*
+    /**
      * List of order-IDs
      */
     protected $order_ids = array();    
 
     /**
      * Analyze the database for mistakes in the EAV-structure
-     * 
-     * @access public
-     * @param null
+     *
      * @return array
      */
     public function getAnalysis()
@@ -53,10 +51,7 @@ class Yireo_DeleteAnyOrder_Model_Database
 
     /**
      * Delete all invalid items
-     * 
-     * @access public
-     * @param null
-     * @return null
+     *
      */
     public function cleanup()
     {
@@ -82,9 +77,7 @@ class Yireo_DeleteAnyOrder_Model_Database
 
     /**
      * Get a list of valid order-IDs
-     * 
-     * @access public
-     * @param null
+     *
      * @return array
      */
     public function getOrderIds()
@@ -107,9 +100,7 @@ class Yireo_DeleteAnyOrder_Model_Database
 
     /**
      * Get a list of valid order increment-IDs
-     * 
-     * @access public
-     * @param null
+     *
      * @return array
      */
     public function getOrderIncrementIds()
@@ -132,8 +123,7 @@ class Yireo_DeleteAnyOrder_Model_Database
 
     /**
      * Get a list of all the invalid downloadable links
-     * 
-     * @access public
+     *
      * @param array $order_ids
      * @return array
      */
@@ -204,10 +194,9 @@ class Yireo_DeleteAnyOrder_Model_Database
         return $invalid;
     }
 
-    /*
+    /**
      * Get a list of all invalid items in the sales_flat_quote table
-     * 
-     * @access public
+     *
      * @param array $increment_ids
      * @return array
      */
@@ -223,10 +212,9 @@ class Yireo_DeleteAnyOrder_Model_Database
         return $invalid;
     }
 
-    /*
+    /**
      * Get a list of all invalid items in the sales_flat_order table
-     * 
-     * @access public
+     *
      * @param array $order_ids
      * @return array
      */
@@ -263,10 +251,9 @@ class Yireo_DeleteAnyOrder_Model_Database
         return $invalid;
     }
 
-    /*
+    /**
      * Get a list of all invalid items in the sales_flat_order_grid table
-     * 
-     * @access public
+     *
      * @param array $order_ids
      * @return array
      */
@@ -295,8 +282,7 @@ class Yireo_DeleteAnyOrder_Model_Database
 
     /**
      * Fix the invalid grid-table
-     * 
-     * @access public
+     *
      * @return array
      */
     public function fixInvalidGrid()
@@ -316,10 +302,9 @@ class Yireo_DeleteAnyOrder_Model_Database
         }
     }
 
-    /*
+    /**
      * Get a list of all the invalid taxes
-     * 
-     * @access public
+     *
      * @param array $order_ids
      * @return array
      */
@@ -350,10 +335,9 @@ class Yireo_DeleteAnyOrder_Model_Database
         return $invalid;
     }
 
-    /*
+    /**
      * Get a list of all the invalid EAV-attributes
-     * 
-     * @access public
+     *
      * @param string $classname
      * @param array $order_ids
      * @return array
@@ -387,10 +371,9 @@ class Yireo_DeleteAnyOrder_Model_Database
         return $invalid;
     }
 
-    /*
+    /**
      * Get a list of all the invalid EAV-attributes
-     * 
-     * @access public
+     *
      * @param array $order_ids
      * @return array
      */
@@ -413,10 +396,9 @@ class Yireo_DeleteAnyOrder_Model_Database
         return $invalid;
     }
 
-    /*
+    /**
      * Get the current increment-ID
-     * 
-     * @access public
+     *
      * @param string $entity_type
      * @return int
      */
@@ -461,10 +443,9 @@ class Yireo_DeleteAnyOrder_Model_Database
         return false;
     }
 
-    /*
+    /**
      * Get the latest increment-ID
-     * 
-     * @access public
+     *
      * @param string $entity_type
      * @return int
      */

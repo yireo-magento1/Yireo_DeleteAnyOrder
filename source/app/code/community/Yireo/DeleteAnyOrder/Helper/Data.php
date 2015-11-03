@@ -13,10 +13,9 @@
  */
 class Yireo_DeleteAnyOrder_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    /*
+    /**
      * Get the entity type ID
-     * 
-     * @access public
+     *
      * @param string $entity_type
      * @return int
      */

@@ -8,17 +8,14 @@
  * @license     Open Source License (OSL v3)
  */
 
-/*
+/**
  * Class for block "deleteanyorder_confirm"
  */
 class Yireo_DeleteAnyOrder_Block_Confirm extends Mage_Adminhtml_Block_Widget
 {
-    /*
+    /**
      * Constructor method
      *
-     * @access public
-     * @param null
-     * @return null
      */
     public function _construct()
     {
@@ -27,11 +24,9 @@ class Yireo_DeleteAnyOrder_Block_Confirm extends Mage_Adminhtml_Block_Widget
         $this->init();
     }
 
-    /*
+    /**
      * Helper to set al order information
      *
-     * @access public
-     * @param null
      * @return string
      */
     public function init()
@@ -54,10 +49,9 @@ class Yireo_DeleteAnyOrder_Block_Confirm extends Mage_Adminhtml_Block_Widget
         $this->setOrders($orders);
     }
 
-    /*
+    /**
      * Helper to return the header of this page
      *
-     * @access public
      * @param string $title
      * @return string
      */
@@ -69,8 +63,6 @@ class Yireo_DeleteAnyOrder_Block_Confirm extends Mage_Adminhtml_Block_Widget
     /**
      * Return the delete URL
      *
-     * @access public
-     * @param null
      * @return string
      */
     public function getDeleteUrl()
@@ -85,8 +77,6 @@ class Yireo_DeleteAnyOrder_Block_Confirm extends Mage_Adminhtml_Block_Widget
     /**
      * Return the back URL
      *
-     * @access public
-     * @param null
      * @return string
      */
     public function getBackUrl()
@@ -97,8 +87,6 @@ class Yireo_DeleteAnyOrder_Block_Confirm extends Mage_Adminhtml_Block_Widget
     /**
      * Render block HTML
      *
-     * @access protected
-     * @param null
      * @return string
      */
     protected function _toHtml()
