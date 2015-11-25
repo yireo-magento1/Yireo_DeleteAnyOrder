@@ -87,6 +87,8 @@ class Yireo_DeleteAnyOrder_Model_Database
             $orders = Mage::getResourceModel('sales/order_collection')
                 ->addFieldToSelect('entity_id')
             ;
+
+            $ids = array();
             if(!empty($orders)) {
                 foreach($orders as $order) {
                     $ids[] = $order->getId();
@@ -110,6 +112,8 @@ class Yireo_DeleteAnyOrder_Model_Database
             $orders = Mage::getResourceModel('sales/order_collection')
                 ->addFieldToSelect('increment_id')
             ;
+
+            $ids = array();
             if(!empty($orders)) {
                 foreach($orders as $order) {
                     $ids[] = $order->getIncrementId();
