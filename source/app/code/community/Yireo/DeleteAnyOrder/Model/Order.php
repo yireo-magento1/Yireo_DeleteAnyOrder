@@ -14,6 +14,19 @@
 class Yireo_DeleteAnyOrder_Model_Order
 {
     /**
+     * Load an order
+     *
+     * @param int $orderId
+     * @return bool
+     */
+    public function load($orderId)
+    {
+        // Initialize the order (sales/order)
+        $order = Mage::getSingleton('sales/order')->load($orderId);
+        return $order;
+    }
+
+    /**
      * Delete an order entirely
      *
      * @param int $orderId
@@ -33,7 +46,7 @@ class Yireo_DeleteAnyOrder_Model_Order
 
         // Delete history comments (sales/order_status_history)
         try {
-            $collection = $this->getCollection($order, 'sales/order_status_history_collection');
+            $collection = $this->getOrderRelatedCollection($order, 'sales/order_status_history_collection');
             $this->deleteCollection($collection);
         } catch(Exception $e) {
             Mage::getModel('adminhtml/session')->addNotice(
@@ -43,7 +56,7 @@ class Yireo_DeleteAnyOrder_Model_Order
 
         // Delete invoices (sales/order_invoice)
         try {
-            $collection = $this->getCollection($order, 'sales/order_invoice_collection');
+            $collection = $this->getOrderRelatedCollection($order, 'sales/order_invoice_collection');
             $this->deleteCollection($collection);
         } catch(Exception $e) {
             Mage::getModel('adminhtml/session')->addNotice(
@@ -63,7 +76,7 @@ class Yireo_DeleteAnyOrder_Model_Order
 
         // Delete payments (sales/order_payment)
         try {
-            $collection = $this->getCollection($order, 'sales/order_payment_collection');
+            $collection = $this->getOrderRelatedCollection($order, 'sales/order_payment_collection');
             $this->deleteCollection($collection);
         } catch(Exception $e) {
             Mage::getModel('adminhtml/session')->addNotice(
@@ -73,7 +86,7 @@ class Yireo_DeleteAnyOrder_Model_Order
 
         // Delete credit memos (sales/order_creditmemo)
         try {
-            $collection = $this->getCollection($order, 'sales/order_creditmemo_collection');
+            $collection = $this->getOrderRelatedCollection($order, 'sales/order_creditmemo_collection');
             $this->deleteCollection($collection);
         } catch(Exception $e) {
             Mage::getModel('adminhtml/session')->addNotice(
@@ -83,7 +96,7 @@ class Yireo_DeleteAnyOrder_Model_Order
 
         // Delete tracks (sales/order_shipment_track)
         try {
-            $collection = $this->getCollection($order, 'sales/order_shipment_track_collection');
+            $collection = $this->getOrderRelatedCollection($order, 'sales/order_shipment_track_collection');
             $this->deleteCollection($collection);
         } catch(Exception $e) {
             Mage::getModel('adminhtml/session')->addNotice(
@@ -93,7 +106,7 @@ class Yireo_DeleteAnyOrder_Model_Order
 
         // Delete shipments (sales/order_shipment)
         try {
-            $collection = $this->getCollection($order, 'sales/order_shipment_collection');
+            $collection = $this->getOrderRelatedCollection($order, 'sales/order_shipment_collection');
             $this->deleteCollection($collection);
         } catch(Exception $e) {
             Mage::getModel('adminhtml/session')->addNotice(
@@ -103,7 +116,7 @@ class Yireo_DeleteAnyOrder_Model_Order
 
         // Delete addresses (sales/order_address)
         try {
-            $collection = $this->getCollection($order, 'sales/order_address_collection');
+            $collection = $this->getOrderRelatedCollection($order, 'sales/order_address_collection');
             $this->deleteCollection($collection);
         } catch(Exception $e) {
             Mage::getModel('adminhtml/session')->addNotice(
@@ -235,7 +248,7 @@ class Yireo_DeleteAnyOrder_Model_Order
      * @param string $name
      * @return array
      */
-    protected function getCollection($order, $name)
+    protected function getOrderRelatedCollection($order, $name)
     {
         try {
             $collection = Mage::getResourceModel($name)
