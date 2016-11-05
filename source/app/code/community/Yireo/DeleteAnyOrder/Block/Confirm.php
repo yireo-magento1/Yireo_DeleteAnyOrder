@@ -1,10 +1,10 @@
 <?php
 /**
- * Yireo DeleteAnyOrder for Magento 
+ * Yireo DeleteAnyOrder for Magento
  *
  * @package     Yireo_DeleteAnyOrder
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2015 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
 
@@ -31,18 +31,18 @@ class Yireo_DeleteAnyOrder_Block_Confirm extends Mage_Adminhtml_Block_Widget
      */
     public function init()
     {
-        $order_id = $this->getRequest()->getParam('order_id', 0);
-        $order_ids = $this->getRequest()->getParam('order_ids', 0);
-        if($order_id > 0) {
-            $order_ids = array($order_id);
+        $orderId = $this->getRequest()->getParam('order_id', 0);
+        $orderIds = $this->getRequest()->getParam('order_ids', 0);
+        if ($orderId > 0) {
+            $orderIds = array($orderId);
         }
 
         $orders = array();
-        foreach($order_ids as $order_id) {
+        foreach ($orderIds as $orderId) {
             try {
-                $orders[] = Mage::getModel('sales/order')->load($order_id);
-            } catch(Exception $e) {
-                Mage::getModel('adminhtml/session')->addError('Failed to load order: '.$e->getMessage());
+                $orders[] = Mage::getModel('sales/order')->load($orderId);
+            } catch (Exception $e) {
+                Mage::getModel('adminhtml/session')->addError('Failed to load order: ' . $e->getMessage());
             }
         }
 
@@ -53,11 +53,12 @@ class Yireo_DeleteAnyOrder_Block_Confirm extends Mage_Adminhtml_Block_Widget
      * Helper to return the header of this page
      *
      * @param string $title
+     *
      * @return string
      */
     public function getHeader($title = null)
     {
-        return 'Delete any order - '.$this->__($title);
+        return 'Delete any order - ' . $this->__($title);
     }
 
     /**
@@ -94,8 +95,8 @@ class Yireo_DeleteAnyOrder_Block_Confirm extends Mage_Adminhtml_Block_Widget
         $this->setChild('delete_button',
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
-                    'label'     => Mage::helper('deleteanyorder')->__('Delete'),
-                    'onclick'   => 'deleteanyorderForm.submit(\''.$this->getDeleteUrl().'\')',
+                    'label' => Mage::helper('deleteanyorder')->__('Delete'),
+                    'onclick' => 'deleteanyorderForm.submit(\'' . $this->getDeleteUrl() . '\')',
                     'class' => 'delete'
                 ))
         );
@@ -103,8 +104,8 @@ class Yireo_DeleteAnyOrder_Block_Confirm extends Mage_Adminhtml_Block_Widget
         $this->setChild('back_button',
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
-                    'label'     => Mage::helper('deleteanyorder')->__('Back'),
-                    'onclick'   => 'setLocation(\''.$this->getBackUrl().'\')',
+                    'label' => Mage::helper('deleteanyorder')->__('Back'),
+                    'onclick' => 'setLocation(\'' . $this->getBackUrl() . '\')',
                     'class' => 'back'
                 ))
         );

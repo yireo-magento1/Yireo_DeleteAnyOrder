@@ -6,7 +6,7 @@
  * @package DeleteAnyOrder
  * @copyright Copyright 2015
  * @license Open Source License (OSL v3)
- * @link http://www.yireo.com
+ * @link https://www.yireo.com
  */
 
 /**
@@ -18,6 +18,7 @@ class Yireo_DeleteAnyOrder_Model_Observer extends Mage_Core_Model_Abstract
      * Method fired on the event <controller_action_predispatch>
      *
      * @param Varien_Event_Observer $observer
+     *
      * @return Yireo_DeleteAnyOrder_Model_Observer
      */
     public function controllerActionPredispatch($observer)
@@ -30,6 +31,7 @@ class Yireo_DeleteAnyOrder_Model_Observer extends Mage_Core_Model_Abstract
      * Method fired on the event <core_block_abstract_prepare_layout_before>
      *
      * @param Varien_Event_Observer $observer
+     *
      * @return Yireo_DeleteAnyOrder_Model_Observer
      */
     public function coreBlockAbstractPrepareLayoutBefore($observer)
@@ -37,9 +39,9 @@ class Yireo_DeleteAnyOrder_Model_Observer extends Mage_Core_Model_Abstract
         $block = $observer->getEvent()->getBlock();
 
         $blockClass = 'Mage_Adminhtml_Block_Widget_Grid_Massaction';
-        if($block instanceof $blockClass
-            && $block->getRequest()->getControllerName() == 'sales_order')
-        {
+        if ($block instanceof $blockClass
+            && $block->getRequest()->getControllerName() == 'sales_order'
+        ) {
             $block->addItem('deleteanyorder', array(
                 'label' => 'Delete permanently',
                 'url' => Mage::helper('adminhtml')->getUrl('adminhtml/deleteanyorder/confirm'),

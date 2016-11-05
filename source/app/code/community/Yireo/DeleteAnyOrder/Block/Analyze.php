@@ -3,8 +3,8 @@
  * Yireo DeleteAnyOrder for Magento 
  *
  * @package     Yireo_DeleteAnyOrder
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2015 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
 
@@ -13,6 +13,9 @@
  */
 class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
 {
+    /** @var Yireo_DeleteAnyOrder_Model_Database */
+    protected $databaseModel;
+
     /**
      * Constructor method
      *
@@ -21,6 +24,7 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
     {
         parent::_construct();
         $this->setTemplate('deleteanyorder/analyze.phtml');
+        $this->databaseModel = Mage::getModel('deleteanyorder/database');
     }
 
     /**
@@ -30,7 +34,7 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
      */
     public function getAnalysis()
     {
-        return Mage::getModel('deleteanyorder/database')->getAnalysis();
+        return $this->databaseModel->getAnalysis();
     }
 
     /**
@@ -40,16 +44,18 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
      */
     public function getIncrementIds()
     {
+        $database = $this->databaseModel;
+
         return array(
             'current' => array(
-                'order' => Mage::getModel('deleteanyorder/database')->getCurrentIncrementId('order'),
-                'invoice' => Mage::getModel('deleteanyorder/database')->getCurrentIncrementId('invoice'),
-                'creditmemo' => Mage::getModel('deleteanyorder/database')->getCurrentIncrementId('creditmemo'),
+                'order' => $database->getCurrentIncrementId('order'),
+                'invoice' => $database->getCurrentIncrementId('invoice'),
+                'creditmemo' => $database->getCurrentIncrementId('creditmemo'),
             ),
             'last' => array(
-                'order' => Mage::getModel('deleteanyorder/database')->getLastIncrementId('order'),
-                'invoice' => Mage::getModel('deleteanyorder/database')->getLastIncrementId('invoice'),
-                'creditmemo' => Mage::getModel('deleteanyorder/database')->getLastIncrementId('creditmemo'),
+                'order' => $database->getLastIncrementId('order'),
+                'invoice' => $database->getLastIncrementId('invoice'),
+                'creditmemo' => $database->getLastIncrementId('creditmemo'),
             ),
         );
     }
@@ -72,7 +78,7 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
      */
     public function getCleanupUrl()
     {
-        return Mage::getModel('adminhtml/url')->getUrl('adminhtml/deleteanyorder/cleanup', array(
+        return $this->getUrl('adminhtml/deleteanyorder/cleanup', array(
             '_current' => true,
             'back' => null,
         ));
@@ -98,7 +104,7 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
         $this->setChild('cleanup_button',
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
-                    'label'     => Mage::helper('deleteanyorder')->__('Clean-up'),
+                    'label'     => $this->__('Clean-up'),
                     'onclick'   => 'deleteanyorderForm.submit(\''.$this->getCleanupUrl().'\')',
                     'class' => 'delete'
                 ))
@@ -107,7 +113,7 @@ class Yireo_DeleteAnyOrder_Block_Analyze extends Mage_Adminhtml_Block_Widget
         $this->setChild('back_button',
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
-                    'label'     => Mage::helper('deleteanyorder')->__('Back'),
+                    'label'     => $this->__('Back'),
                     'onclick'   => 'setLocation(\''.$this->getBackUrl().'\')',
                     'class' => 'back'
                 ))

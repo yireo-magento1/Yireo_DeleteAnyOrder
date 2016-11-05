@@ -1,16 +1,16 @@
 <?php
 /**
- * Yireo DeleteAnyOrder for Magento 
+ * Yireo DeleteAnyOrder for Magento
  *
  * @package     Yireo_DeleteAnyOrder
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2015 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
 
 // Automatically delete the old controller-file
-$oldFile = dirname(__FILE__).'/IndexController.php';
-if(is_file($oldFile)) @unlink($oldFile);
+$oldFile = dirname(__FILE__) . '/IndexController.php';
+if (is_file($oldFile)) @unlink($oldFile);
 
 /**
  * DeleteAnyOrder admin controller
@@ -31,14 +31,12 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
             ->_setActiveMenu('system/tools/deleteanyorder')
             ->_addBreadcrumb(Mage::helper('adminhtml')->__('System'), Mage::helper('adminhtml')->__('System'))
             ->_addBreadcrumb(Mage::helper('adminhtml')->__('Tools'), Mage::helper('adminhtml')->__('Tools'))
-            ->_addBreadcrumb(Mage::helper('adminhtml')->__('Delete Any Order'), Mage::helper('adminhtml')->__('Delete Any Order'))
-        ;
+            ->_addBreadcrumb(Mage::helper('adminhtml')->__('Delete Any Order'), Mage::helper('adminhtml')->__('Delete Any Order'));
         return $this;
     }
 
     /**
      * Overview page
-     *
      */
     public function indexAction()
     {
@@ -49,7 +47,6 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
 
     /**
      * Alias for overview
-     *
      */
     public function gridAction()
     {
@@ -58,7 +55,6 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
 
     /**
      * Confirmation page
-     *
      */
     public function confirmAction()
     {
@@ -69,7 +65,6 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
 
     /**
      * Delete action
-     *
      */
     public function deleteAction()
     {
@@ -77,20 +72,20 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
         $order_ids = $this->getRequest()->getParam('order_ids', 0);
         $count = array('true' => 0, 'false' => 0);
 
-        foreach($order_ids as $order_id) {
-            if(Mage::getModel('deleteanyorder/order')->load($order_id)->delete() == true) {
+        foreach ($order_ids as $order_id) {
+            if ($this->getOrderModel()->load($order_id)->delete() == true) {
                 $count['true']++;
             } else {
                 $count['false']++;
             }
         }
 
-        if($count['true'] > 0) {
-            Mage::getModel('adminhtml/session')->addNotice($this->__('Deleted %s orders succesfully', $count['true']));
+        if ($count['true'] > 0) {
+            $this->getSession()->addNotice($this->__('Deleted %s orders succesfully', $count['true']));
         }
 
-        if($count['false'] > 0) {
-            Mage::getModel('adminhtml/session')->addNotice($this->__('Unable to delete %s orders', $count['false']));
+        if ($count['false'] > 0) {
+            $this->getSession()->addNotice($this->__('Unable to delete %s orders', $count['false']));
         }
 
         // Redirect
@@ -99,11 +94,10 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
 
     /**
      * Analyze page
-     *
      */
     public function analyzeAction()
     {
-        Mage::getModel('adminhtml/session')->addError($this->__('Make sure you have a valid backup before continuing'));
+        $this->getSession()->addError($this->__('Make sure you have a valid backup before continuing'));
 
         $this->_initAction()
             ->_addContent($this->getLayout()->createBlock('deleteanyorder/analyze'))
@@ -123,8 +117,25 @@ class Yireo_DeleteAnyOrder_DeleteanyorderController extends Mage_Adminhtml_Contr
         $this->_redirect('adminhtml/deleteanyorder/analyze');
     }
 
+    /**
+     * @return Yireo_DeleteAnyOrder_Model_Order
+     */
+    protected function getOrderModel()
+    {
+        return Mage::getModel('deleteanyorder/order');
+    }
 
+    /**
+     * @return Mage_Adminhtml_Model_Session
+     */
+    protected function getSession()
+    {
+        return Mage::getModel('adminhtml/session');
+    }
 
+    /**
+     * @return bool
+     */
     protected function _isAllowed()
     {
         $aclResource = 'admin/system/tools/deleteanyorder';

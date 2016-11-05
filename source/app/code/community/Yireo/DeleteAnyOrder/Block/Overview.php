@@ -1,18 +1,17 @@
 <?php
+
 /**
- * Yireo DeleteAnyOrder for Magento 
+ * Yireo DeleteAnyOrder for Magento
  *
  * @package     Yireo_DeleteAnyOrder
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2015 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
-
 class Yireo_DeleteAnyOrder_Block_Overview extends Mage_Adminhtml_Block_Widget_Container
 {
     /**
      * Constructor method
-     *
      */
     public function _construct()
     {
@@ -46,11 +45,12 @@ class Yireo_DeleteAnyOrder_Block_Overview extends Mage_Adminhtml_Block_Widget_Co
      * Helper to return the header of this page
      *
      * @param string $title
+     *
      * @return string
      */
     public function getHeader($title = null)
     {
-        return 'Delete Any Order - '.$this->__($title);
+        return 'Delete Any Order - ' . $this->__($title);
     }
 
     /**
@@ -60,7 +60,7 @@ class Yireo_DeleteAnyOrder_Block_Overview extends Mage_Adminhtml_Block_Widget_Co
      */
     public function getAnalyzeUrl()
     {
-        return Mage::getModel('adminhtml/url')->getUrl('adminhtml/deleteanyorder/analyze', array(
+        return $this->getUrl('adminhtml/deleteanyorder/analyze', array(
             '_current' => true,
             'back' => null,
         ));

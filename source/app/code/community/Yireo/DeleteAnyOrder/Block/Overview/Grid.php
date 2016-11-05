@@ -1,24 +1,29 @@
 <?php
+
 /**
- * Yireo DeleteAnyOrder for Magento 
+ * Yireo DeleteAnyOrder for Magento
  *
  * @package     Yireo_DeleteAnyOrder
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2015 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
  */
-
 class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sales_Order_Grid
 {
     /**
+     * @var Mage_Admin_Model_Session
+     */
+    protected $_session;
+
+    /**
      * Constructor method
-     *
      */
     public function __construct()
     {
         parent::__construct();
         $this->setId('deleteanyorder_grid');
         $this->setUseAjax(false);
+        $this->_session = Mage::getSingleton('admin/session');
     }
 
     /**
@@ -31,9 +36,9 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
         $this->setChild('analyze_button',
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
-                    'label'     => Mage::helper('adminhtml')->__('Analyse Database'),
-                    'onclick'   => 'doAnalyze()',
-                    'class'   => 'delete'
+                    'label' => $this->__('Analyse Database'),
+                    'onclick' => 'doAnalyze()',
+                    'class' => 'delete'
                 ))
         );
 
@@ -48,25 +53,25 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
     {
         parent::_prepareColumns();
 
-        if (Mage::getSingleton('admin/session')->isAllowed('system/tools/deleteanyorder')) {
+        if ($this->_session->isAllowed('system/tools/deleteanyorder')) {
             $this->addColumn('action',
                 array(
-                    'header'    => Mage::helper('deleteanyorder')->__('Action'),
-                    'width'     => '50px',
-                    'type'      => 'action',
-                    'getter'     => 'getId',
-                    'actions'   => array(
+                    'header' => $this->__('Action'),
+                    'width' => '50px',
+                    'type' => 'action',
+                    'getter' => 'getId',
+                    'actions' => array(
                         array(
-                            'caption' => Mage::helper('deleteanyorder')->__('Delete'),
-                            'url'     => array('base'=>'*/*/confirm'),
-                            'field'   => 'order_id'
+                            'caption' => $this->__('Delete'),
+                            'url' => array('base' => '*/*/confirm'),
+                            'field' => 'order_id'
                         )
                     ),
-                    'filter'    => false,
-                    'sortable'  => false,
-                    'index'     => 'stores',
+                    'filter' => false,
+                    'sortable' => false,
+                    'index' => 'stores',
                     'is_system' => true,
-            ));
+                ));
         }
 
         // Call a helper to remove all the unwanted RSS links
@@ -75,7 +80,6 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
 
     /**
      * Overriden method to set the mass action select-box
-     *
      */
     public function _prepareMassaction()
     {
@@ -84,8 +88,8 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
         $this->getMassactionBlock()->setUseSelectAll(false);
 
         $this->getMassactionBlock()->addItem('delete_order', array(
-             'label'=> Mage::helper('deleteanyorder')->__('Delete'),
-             'url'  => $this->getUrl('*/*/confirm'),
+            'label' => Mage::helper('deleteanyorder')->__('Delete'),
+            'url' => $this->getUrl('*/*/confirm'),
         ));
     }
 
@@ -93,6 +97,7 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
      * Method to return a delete-URL per item
      *
      * @param object $row
+     *
      * @return string
      */
     public function getRowUrl($row)
@@ -116,6 +121,7 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
     /**
      * Method to return the button section
      *
+     * @return string
      */
     public function getMainButtonsHtml()
     {
@@ -126,7 +132,6 @@ class Yireo_DeleteAnyOrder_Block_Overview_Grid extends Mage_Adminhtml_Block_Sale
 
     /**
      * Method to clean the internal RSS lists
-     *
      */
     public function cleanRssLists()
     {
