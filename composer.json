@@ -1,0 +1,29 @@
+{
+    "name": "yireo/magento1-deleteanyorder",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "homepage": "https://www.yireo.com/software/magento-extensions/delete-any-order",
+    "keywords":[ "composer-installer", "magento"],
+    "authors": [
+        {
+            "name": "Jisse Reitsma (Yireo)",
+            "email": "jisse@yireo.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev":{
+        "phpunit/phpunit":"*",
+        "composer/composer":"*@dev"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.firegento.com"
+        }
+    ],
+    "extra":{
+        "magento-root-dir": "source/"
+    }
+}
